@@ -9,9 +9,9 @@
     result_msg   db 0Dh, 0Ah, 'The decimal equivalent is: $'
     newline      db 0Dh, 0Ah, '$'
     input_buffer db 10, ?, 10 dup(?)
-    hex_first    db 0          ; 存储十六进制数的第一位
-    hex_second   db 0          ; 存储十六进制数的第二位
-    hex_value    dw 0          ; 存储转换后的十六进制数值
+    hex_first    db 0                                                                   ; 存储十六进制数的第一位
+    hex_second   db 0                                                                   ; 存储十六进制数的第二位
+    hex_value    dw 0                                                                   ; 存储转换后的十六进制数值
 
 .code
     START:          
@@ -45,7 +45,7 @@
                     mov  al, [si+2]          ; 获取第一个字符
                     cmp  bl, 1               ; 检查是否只有一个字符
                     je   single_digit        ; 如果只有一个字符，跳转到single_digit
-                    ; 有两个字符的情况
+    ; 有两个字符的情况
                     mov  [hex_first], al     ; 存储第一位
                     mov  al, [si+3]          ; 获取第二个字符
                     mov  [hex_second], al    ; 存储第二位
@@ -111,12 +111,12 @@
                     cmp  al, '0'
                     jl   htd_error
                     cmp  al, '9'
-                    jle  htd_digit ; 处理数字0-9
+                    jle  htd_digit           ; 处理数字0-9
                     cmp  al, 'a'
                     jl   htd_error
                     cmp  al, 'f'
                     jg   htd_error
-                    ; 处理字母a-f
+    ; 处理字母a-f
                     sub  al, 'a' - 10
                     ret
     
