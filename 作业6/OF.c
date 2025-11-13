@@ -1,18 +1,14 @@
 #include <stdio.h>
-#include <stdint.h>
-#include <stdlib.h>
 // 编译工具：x86 msvc
 
 // 模拟溢出中断处理的概念
-void OverflowInterruptHandler()
-{
+void OverflowInterruptHandler(){
     printf("溢出中断发生！程序将安全终止。\n");
     exit(1);
 }
 
 // 手动检查溢出标志的函数
-int CheckOverflowFlags(int A, int B)
-{
+int CheckOverflowFlags(int A, int B){
     int Result;
     unsigned char OFFlag;
 
@@ -31,8 +27,7 @@ int CheckOverflowFlags(int A, int B)
 }
 
 // 使用条件跳转模拟INTO行为
-void SimulateIntoInstruction(int OFDetected)
-{
+void SimulateIntoInstruction(int OFDetected){
     if (OFDetected)
     {
         printf("检测到溢出标志OF=1，触发中断处理\n");
@@ -45,8 +40,7 @@ void SimulateIntoInstruction(int OFDetected)
 }
 
 // 触发溢出的测试函数
-void TestOverflow()
-{
+void TestOverflow(){
     int A = 2147483647; // INT_MAX
     int B = 1;
     int Result;
@@ -71,8 +65,7 @@ void TestOverflow()
 }
 
 // 不触发溢出的测试函数
-void TestNoOverflow()
-{
+void TestNoOverflow(){
     int A = 100;
     int B = 200;
     int Result;
@@ -95,8 +88,7 @@ void TestNoOverflow()
 }
 
 // 主函数
-int main()
-{
+int main(){
     printf("1. 测试无溢出情况：\n");
     TestNoOverflow();
 
